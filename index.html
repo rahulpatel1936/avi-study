@@ -133,7 +133,7 @@ input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px;
   <div class="wrap">
     <section class="card" aria-labelledby="email-h">
       <h2 id="email-h">Email the link to yourself</h2>
-      <p class="lead">Each button opens a new message with the link filled in. Add your own email address and send it.</p>
+      <p class="lead">Each button opens a new message with the subject and link filled in, in the app if you have it and otherwise in your browser. Add your own email address in the To field and send it.</p>
       <div class="btns">
         <a class="btn red" id="outlookMail" target="_blank" rel="noopener">
           <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
@@ -198,6 +198,33 @@ input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px;
   $("outlookMail").href = "https://outlook.office.com/mail/deeplink/compose?subject=" + enc(SUBJECT) + "&body=" + enc(BODY);
   $("gmailMail").href = "https://mail.google.com/mail/?view=cm&fs=1&su=" + enc(SUBJECT) + "&body=" + enc(BODY);
   $("mailtoMail").href = "mailto:?subject=" + enc(SUBJECT) + "&body=" + enc(BODY);
+
+  // On phones, try the Outlook or Gmail app first; fall back to the web compose page.
+  var ua = navigator.userAgent || "";
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var q = "subject=" + enc(SUBJECT) + "&body=" + enc(BODY);
+  var apps = {
+    outlookMail: { ios: "ms-outlook://compose?" + q, android: "com.microsoft.office.outlook" },
+    gmailMail: { ios: "googlegmail:///co?" + q, android: "com.google.android.gm" }
+  };
+  Object.keys(apps).forEach(function (id) {
+    var el = $(id), app = apps[id];
+    el.addEventListener("click", function (e) {
+      var web = el.href;
+      if (isAndroid) {
+        e.preventDefault();
+        location.href = "intent:?" + q + "#Intent;scheme=mailto;package=" + app.android +
+          ";S.browser_fallback_url=" + enc(web) + ";end";
+      } else if (isIOS) {
+        e.preventDefault();
+        var timer = setTimeout(function () { if (!document.hidden) location.href = web; }, 1500);
+        document.addEventListener("visibilitychange", function () { if (document.hidden) clearTimeout(timer); });
+        window.addEventListener("pagehide", function () { clearTimeout(timer); });
+        location.href = app.ios;
+      }
+    });
+  });
 
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   var d = new Date(); d.setDate(d.getDate() + 1);
