@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Video Interview Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<style>
+/* Layout: University of Guelph design system, single light theme. White header band,
+   grey-light-bg action band with square white cards, grey-dark-bg footer. Narrow centred column for phones. */
+:root {
+  color-scheme: light;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-red: #e51937;
+  --color-red-focus: #b3142c;
+  --color-red-contrast: #ffffff;
+  --color-yellow: #ffc429;
+  --color-yellow-on-dark: #ffc429;
+  --color-blue: #187bb4;
+  --color-blue-focus: #135f8b;
+  --color-blue-on-light: #1775ab;
+  --color-blue-contrast: #ffffff;
+  --color-green-on-light: #2e7f35;
+  --color-grey-light: #d8d8d8;
+  --color-grey-light-bg: #f5f5f5;
+  --color-grey-dark: #747676;
+  --color-grey-dark-bg: #222222;
+  --color-body-copy: #555555;
+  --color-body-copy-bold: #333333;
+  --color-body-copy-on-dark: #cccccc;
+  --color-body-copy-bold-on-dark: #e2e2e2;
+  --color-body-copy-link-on-dark: #1d93d7;
+  --radius-sm: 2.5px;
+  --shadow-sm: 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
+  --sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --serif: "Bitter", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--color-white); color: var(--color-body-copy);
+  font-family: var(--sans); font-size: 18px; line-height: 1.6;
+}
+.band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band.grey { background: var(--color-grey-light-bg); }
+.band.dark { background: var(--color-grey-dark-bg); color: var(--color-body-copy-on-dark); }
+.wrap { max-width: 600px; margin: 0 auto; padding-block: 30px; display: grid; gap: 24px; }
+
+.eyebrow { font-size: 14px; line-height: 1.4; font-weight: 500; color: var(--color-grey-dark); }
+h1 { font-family: var(--serif); font-weight: 700; font-size: 40px; line-height: 1.4; color: var(--color-black); margin: 0; text-wrap: balance; }
+h2 { font-family: var(--sans); font-weight: 700; font-size: 30px; line-height: 1.4; color: var(--color-red); margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.header-text { display: grid; gap: 15px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.tags li { background: var(--color-grey-light-bg); color: var(--color-body-copy-bold); border-radius: var(--radius-sm); padding: 4px 12px; font-size: 16px; line-height: 1.4; font-weight: 500; }
+
+.divider { display: flex; width: 90px; height: 4px; }
+.divider span { flex: 1; }
+.divider span:nth-child(1) { background: var(--color-red); }
+.divider span:nth-child(2) { background: var(--color-yellow); }
+.divider span:nth-child(3) { background: var(--color-black); }
+
+.alert { background: var(--color-white); border: 1px solid var(--color-grey-light); border-left: 6px solid var(--color-yellow); padding: 15px 16px; font-size: 16px; line-height: 1.4; color: var(--color-body-copy); }
+.alert strong { color: var(--color-body-copy-bold); font-weight: 700; display: block; margin-bottom: 4px; }
+
+.card { background: var(--color-white); box-shadow: var(--shadow-sm); padding: 24px; display: grid; gap: 15px; }
+.card .lead { font-size: 16px; line-height: 1.4; }
+.btns { display: grid; gap: 12px; }
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 52px; padding: 12px 24px; border-radius: 0;
+  font: 500 18px/1.4 var(--sans); text-decoration: none; text-align: center; cursor: pointer;
+  border: 2px solid transparent;
+}
+.btn svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+.btn.red { background: var(--color-red); color: var(--color-red-contrast); border-color: var(--color-red); }
+.btn.red:hover, .btn.red:focus-visible { background: var(--color-red-focus); border-color: var(--color-red-focus); }
+.btn.red:focus-visible { outline: 2px solid var(--color-red); outline-offset: 2px; }
+.btn.outline { background: var(--color-white); color: var(--color-blue-on-light); border-color: var(--color-blue-on-light); }
+.btn.outline:hover, .btn.outline:focus-visible { background: var(--color-blue-focus); color: var(--color-blue-contrast); border-color: var(--color-blue-focus); }
+.btn.outline:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px; }
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+label { font-size: 16px; line-height: 1.4; font-weight: 500; color: var(--color-body-copy-bold); display: grid; gap: 4px; min-width: 0; }
+input[type="date"], input[type="time"] {
+  font: 400 16px/1.4 var(--sans); padding: 10px 12px; border-radius: var(--radius-sm);
+  border: 1px solid var(--color-grey-dark); background: var(--color-white); color: var(--color-body-copy-bold);
+  width: 100%; min-width: 0;
+}
+input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px; }
+.linkbox {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 14px; line-height: 1.4;
+  word-break: break-all; padding: 12px; background: var(--color-grey-light-bg);
+  border: 1px solid var(--color-grey-light); color: var(--color-body-copy-bold); user-select: all;
+}
+.status { font-size: 14px; line-height: 1.4; color: var(--color-green-on-light); font-weight: 500; min-height: 1.4em; }
+
+.footer-text { display: grid; gap: 15px; font-size: 16px; line-height: 1.6; }
+.footer-text strong { color: var(--color-body-copy-bold-on-dark); }
+.footer-text a { color: var(--color-body-copy-link-on-dark); text-decoration: underline; }
+.footer-text a:focus-visible { outline: 2px solid var(--color-yellow-on-dark); outline-offset: 2px; }
+.fine { font-size: 12px; line-height: 1.4; }
+.dark .divider span:nth-child(3) { background: var(--color-white); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap">
+    <div class="header-text">
+      <div class="eyebrow">University of Guelph · Department of Psychology · PSYC*2070</div>
+      <h1>Practice a Video Interview</h1>
+      <p>Complete a mock video interview and a short survey online, on your own computer, at a time that suits you. You can also ask for personalized feedback on your answers.</p>
+    </div>
+    <ul class="tags" aria-label="Study details">
+      <li>About 20–25 minutes</li>
+      <li>$10 Amazon gift card</li>
+      <li>Optional feedback</li>
+    </ul>
+    <div class="alert" role="note">
+      <strong>You need a laptop or desktop with a webcam</strong>
+      The interview does not work on a phone. Send yourself the link, then open it on your computer.
+    </div>
+  </div>
+</header>
+
+<main class="band grey">
+  <div class="wrap">
+    <section class="card" aria-labelledby="email-h">
+      <h2 id="email-h">Email the link to yourself</h2>
+      <p class="lead">Each button opens a new message with the link filled in. Add your own email address and send it.</p>
+      <div class="btns">
+        <a class="btn red" id="outlookMail" target="_blank" rel="noopener">
+          <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+          U of G Email (Outlook)
+        </a>
+        <a class="btn outline" id="gmailMail" target="_blank" rel="noopener">Gmail</a>
+        <a class="btn outline" id="mailtoMail">Phone Mail App</a>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="cal-h">
+      <h2 id="cal-h">Add a calendar reminder</h2>
+      <p class="lead">Pick a time when you will be at your computer. The event includes the study link.</p>
+      <div class="row">
+        <label for="calDate">Date<input type="date" id="calDate"></label>
+        <label for="calTime">Time<input type="time" id="calTime" step="900"></label>
+      </div>
+      <div class="btns">
+        <a class="btn red" id="outlookCal" target="_blank" rel="noopener">U of G Calendar (Outlook)</a>
+        <a class="btn outline" id="googleCal" target="_blank" rel="noopener">Google Calendar</a>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="copy-h">
+      <h2 id="copy-h">Copy the link</h2>
+      <p class="lead">Paste it into a note or a message to yourself, or straight into your laptop's browser.</p>
+      <div class="linkbox" id="linkText"></div>
+      <div class="btns">
+        <button class="btn outline" id="copyBtn" type="button">Copy Link</button>
+      </div>
+      <div class="status" id="copyStatus" role="status" aria-live="polite"></div>
+      <div class="btns">
+        <a class="btn red" id="openNow" target="_blank" rel="noopener">On a Computer Now? Start the Study</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="band dark">
+  <div class="wrap">
+    <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="footer-text">
+      <p><strong>Your participation is completely voluntary.</strong> Choosing to participate, not participate, or withdraw will have no effect whatsoever on your grades or academic standing. The course instructor and teaching assistants will not know who chose to participate. You may withdraw your data up until December 2026.</p>
+      <p>Questions? Contact the student researcher, Rahul Patel, at <a href="mailto:rpatel40@uoguelph.ca">rpatel40@uoguelph.ca</a>. This study is supervised by Dr. Deborah Powell (Principal Investigator), Department of Psychology, University of Guelph.</p>
+      <p class="fine">This project has been reviewed by the Research Ethics Board for compliance with federal guidelines for research involving human participants (REB#2949).</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var STUDY = "https://app.vipp-project.com/interviews/6a70e3feab19f71bd41f63b6";
+  var SUBJECT = "Video interview study link (open on a laptop)";
+  var BODY = "Study link (open on a laptop or desktop with a webcam):\n" + STUDY +
+    "\n\nAbout 20-25 minutes. $10 Amazon gift card for completing the study.\n" +
+    "Questions: rpatel40@uoguelph.ca\nREB#2949";
+  var enc = encodeURIComponent;
+  function $(id) { return document.getElementById(id); }
+
+  $("linkText").textContent = STUDY;
+  $("openNow").href = STUDY;
+  $("outlookMail").href = "https://outlook.office.com/mail/deeplink/compose?subject=" + enc(SUBJECT) + "&body=" + enc(BODY);
+  $("gmailMail").href = "https://mail.google.com/mail/?view=cm&fs=1&su=" + enc(SUBJECT) + "&body=" + enc(BODY);
+  $("mailtoMail").href = "mailto:?subject=" + enc(SUBJECT) + "&body=" + enc(BODY);
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  var d = new Date(); d.setDate(d.getDate() + 1);
+  $("calDate").value = d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+  $("calTime").value = "19:00";
+
+  function gfmt(dt) { return dt.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); }
+  function updateCal() {
+    var parts = ($("calDate").value || "").split("-");
+    var tparts = ($("calTime").value || "19:00").split(":");
+    var start = parts.length === 3
+      ? new Date(+parts[0], +parts[1] - 1, +parts[2], +tparts[0], +tparts[1] || 0)
+      : new Date(Date.now() + 864e5);
+    if (isNaN(start)) start = new Date(Date.now() + 864e5);
+    var end = new Date(start.getTime() + 30 * 60000);
+    var title = "Video interview study (laptop + webcam)";
+    $("googleCal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + enc(title) +
+      "&dates=" + gfmt(start) + "/" + gfmt(end) + "&details=" + enc(BODY) + "&location=" + enc(STUDY);
+    $("outlookCal").href = "https://outlook.office.com/calendar/deeplink/compose?subject=" + enc(title) +
+      "&startdt=" + enc(start.toISOString()) + "&enddt=" + enc(end.toISOString()) +
+      "&body=" + enc(BODY) + "&location=" + enc(STUDY);
+  }
+  $("calDate").addEventListener("change", updateCal);
+  $("calTime").addEventListener("change", updateCal);
+  updateCal();
+
+  function selectLink() {
+    var r = document.createRange(); r.selectNodeContents($("linkText"));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  $("copyBtn").addEventListener("click", function () {
+    var done = function () { $("copyStatus").textContent = "Link copied"; };
+    var fail = function () { selectLink(); $("copyStatus").textContent = "Link selected. Use your phone's Copy option."; };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(STUDY).then(done, fail);
+      else fail();
+    } catch (e) { fail(); }
+  });
+})();
+</script>
+
+</body>
+</html>
