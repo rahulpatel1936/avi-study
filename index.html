@@ -188,10 +188,17 @@ input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px;
 <script>
 (function () {
   var STUDY = "https://app.vipp-project.com/interviews/6a70e3feab19f71bd41f63b6";
-  var SUBJECT = "Video interview study link (open on a laptop)";
-  var BODY = "Study link (open on a laptop or desktop with a webcam):\n" + STUDY +
-    "\n\nAbout 20-25 minutes. $10 Amazon gift card for completing the study.\n" +
-    "Questions: rpatel40@uoguelph.ca\nREB#2949";
+  var SUBJECT = "Your practice video interview link: 20–25 min, $10 gift card";
+  var BODY = "Complete your practice video interview when you're at a laptop or desktop.\n\n" +
+    "🔗 Start here: " + STUDY + "\n\n" +
+    "⏱️ Time: Set aside 20–25 minutes\n" +
+    "💻 You need: A laptop or desktop with a webcam and microphone. Google Chrome is recommended.\n" +
+    "🎁 Incentive: $10 Amazon gift card, sent to the email you provide at the end\n" +
+    "💬 Optional: Get personalized feedback on your answers by emailing rpatel40@uoguelph.ca\n\n" +
+    "Tip: Find a quiet, well-lit spot before you start.\n\n" +
+    "Participation is voluntary and has no effect on your grade. Your instructor and TAs will not know who participates.\n\n" +
+    "Questions: rpatel40@uoguelph.ca\n" +
+    "University of Guelph Research Ethics Board #2949";
   var enc = encodeURIComponent;
   function $(id) { return document.getElementById(id); }
 
@@ -242,7 +249,7 @@ input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px;
       : new Date(Date.now() + 864e5);
     if (isNaN(start)) start = new Date(Date.now() + 864e5);
     var end = new Date(start.getTime() + 30 * 60000);
-    var title = "Video interview study (laptop + webcam)";
+    var title = "Practice Video Interview Study (25 min, laptop)";
     $("googleCal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + enc(title) +
       "&dates=" + gfmt(start) + "/" + gfmt(end) + "&details=" + enc(BODY) + "&location=" + enc(STUDY);
     $("outlookCal").href = "https://outlook.office.com/calendar/deeplink/compose?subject=" + enc(title) +
