@@ -199,7 +199,8 @@ input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px;
     "Participation is voluntary and has no effect on your grade. Your instructor and TAs will not know who participates.\n\n" +
     "Questions: rpatel40@uoguelph.ca\n" +
     "University of Guelph Research Ethics Board #2949";
-  // Google Calendar renders HTML in event descriptions, so it gets links and bold labels.
+  // Google and Outlook calendars render HTML in event descriptions, so they get links and bold labels.
+  // Email compose links (Gmail, Outlook mail, mailto) only accept plain text, so they keep BODY.
   var MAILLINK = '<a href="mailto:rpatel40@uoguelph.ca">rpatel40@uoguelph.ca</a>';
   var BODY_HTML = "Complete your practice video interview when you're at a laptop or desktop.<br><br>" +
     '🔗 Start here: <a href="' + STUDY + '">' + STUDY + "</a><br><br>" +
@@ -266,7 +267,7 @@ input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px;
       "&dates=" + gfmt(start) + "/" + gfmt(end) + "&details=" + enc(BODY_HTML) + "&location=" + enc(STUDY);
     $("outlookCal").href = "https://outlook.office.com/calendar/deeplink/compose?subject=" + enc(title) +
       "&startdt=" + enc(start.toISOString()) + "&enddt=" + enc(end.toISOString()) +
-      "&body=" + enc(BODY) + "&location=" + enc(STUDY);
+      "&body=" + enc(BODY_HTML) + "&location=" + enc(STUDY);
   }
   $("calDate").addEventListener("change", updateCal);
   $("calTime").addEventListener("change", updateCal);
