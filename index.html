@@ -199,6 +199,18 @@ input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px;
     "Participation is voluntary and has no effect on your grade. Your instructor and TAs will not know who participates.\n\n" +
     "Questions: rpatel40@uoguelph.ca\n" +
     "University of Guelph Research Ethics Board #2949";
+  // Google Calendar renders HTML in event descriptions, so it gets links and bold labels.
+  var MAILLINK = '<a href="mailto:rpatel40@uoguelph.ca">rpatel40@uoguelph.ca</a>';
+  var BODY_HTML = "Complete your practice video interview when you're at a laptop or desktop.<br><br>" +
+    '🔗 Start here: <a href="' + STUDY + '">' + STUDY + "</a><br><br>" +
+    "⏱️ <b>Time:</b> Set aside 20–25 minutes<br>" +
+    "💻 <b>You need:</b> A laptop or desktop with a webcam and microphone. Google Chrome is recommended.<br>" +
+    "🎁 <b>Incentive:</b> $10 Amazon gift card, sent to the email you provide at the end<br>" +
+    "💬 <b>Optional:</b> Get personalized feedback on your answers by emailing " + MAILLINK + "<br><br>" +
+    "<b>Tip:</b> Find a quiet, well-lit spot before you start.<br><br>" +
+    "Participation is voluntary and has no effect on your grade. Your instructor and TAs will not know who participates.<br><br>" +
+    "Questions: " + MAILLINK + "<br>" +
+    "University of Guelph Research Ethics Board #2949";
   var enc = encodeURIComponent;
   function $(id) { return document.getElementById(id); }
 
@@ -251,7 +263,7 @@ input:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px;
     var end = new Date(start.getTime() + 30 * 60000);
     var title = "Practice Video Interview Study (25 min, laptop)";
     $("googleCal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + enc(title) +
-      "&dates=" + gfmt(start) + "/" + gfmt(end) + "&details=" + enc(BODY) + "&location=" + enc(STUDY);
+      "&dates=" + gfmt(start) + "/" + gfmt(end) + "&details=" + enc(BODY_HTML) + "&location=" + enc(STUDY);
     $("outlookCal").href = "https://outlook.office.com/calendar/deeplink/compose?subject=" + enc(title) +
       "&startdt=" + enc(start.toISOString()) + "&enddt=" + enc(end.toISOString()) +
       "&body=" + enc(BODY) + "&location=" + enc(STUDY);
